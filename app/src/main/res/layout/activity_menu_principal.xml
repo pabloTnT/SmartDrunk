@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controlador.MenuPrincipal">
+
+    <TextView
+        android:id="@+id/tvCodMesa"
+        android:layout_width="128dp"
+        android:layout_height="36dp"
+        android:clickable="false"
+        android:fontFamily="cursive"
+        android:gravity="start"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvMesa"
+        app:layout_constraintStart_toEndOf="@+id/tvMesa" />
+
+    <TextView
+        android:id="@+id/tvBienvenido2"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:clickable="false"
+        android:fontFamily="cursive"
+        android:gravity="center_horizontal"
+        android:text="Bienvenido"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivImagen2"
+        android:layout_width="145dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="115dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCuenta"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <Button
+        android:id="@+id/btnCuenta"
+        android:layout_width="244dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="64dp"
+        android:drawableLeft="@android:drawable/ic_menu_sort_by_size"
+        android:text="Tu Cuenta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMenu" />
+
+    <TextView
+        android:id="@+id/tvUsuario"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:clickable="false"
+        android:fontFamily="cursive"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tvMesa"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMesa"
+        android:layout_width="150dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:clickable="false"
+        android:fontFamily="cursive"
+        android:gravity="center_horizontal"
+        android:text="Mesa:"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBienvenido2" />
+
+    <Button
+        android:id="@+id/btnMenu"
+        android:layout_width="244dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="110dp"
+        android:drawableLeft="@android:drawable/ic_menu_sort_by_size"
+        android:text="Menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMesa" />
+
+    <ImageView
+        android:id="@+id/ivImagen1"
+        android:layout_width="145dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="115dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCuenta"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
