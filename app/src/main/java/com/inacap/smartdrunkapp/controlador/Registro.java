@@ -48,7 +48,7 @@ public class Registro extends AppCompatActivity {
                 cliente.setCorreo(tilCorreo.getEditText().getText().toString());
                 cliente.setContraseña(tilContraseña.getEditText().getText().toString());
                 if (!cliente.getNombre().isEmpty() && !cliente.getCorreo().isEmpty() && !cliente.getContraseña().isEmpty()){
-                    registroCliente("http://smartdrunk.freetzi.com/SmartDrunk/registro.php", cliente);
+                    registroCliente("http://smartdrunk.freetzi.com/SmartDrunk/insertCliente.php", cliente);
                 }else{
                     Toast.makeText(Registro.this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show();
                 }

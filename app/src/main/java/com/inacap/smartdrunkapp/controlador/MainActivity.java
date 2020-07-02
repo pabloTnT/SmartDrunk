@@ -1,33 +1,30 @@
 package com.inacap.smartdrunkapp.controlador;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputLayout;
 import com.inacap.smartdrunkapp.R;
 import com.inacap.smartdrunkapp.dto.ClienteDto;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnIngresar, btnRegistrar;
+    Button btnIngresar, btnRegistrar, btnPrueba;
     TextInputLayout tilCorreo, tilContraseña;
+    RequestQueue requestQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         tilContraseña = findViewById(R.id.tilContraseña);
         btnIngresar = findViewById(R.id.btnIngresar);
         btnRegistrar = findViewById(R.id.btnCrearCuenta);
-
+        btnPrueba = findViewById(R.id.btnPrueba);
 
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,51 +50,60 @@ public class MainActivity extends AppCompatActivity {
                 cliente.setCorreo(tilCorreo.getEditText().getText().toString());
                 cliente.setContraseña(tilContraseña.getEditText().getText().toString());
                 if(!cliente.getCorreo().isEmpty() && !cliente.getContraseña().isEmpty()){
-                    validarCliente("http://smartdrunk.freetzi.com/SmartDrunk/validaCliente.php", cliente);
+                    accesoCliente("http://smartdrunk.freetzi.com/SmartDrunk/buscarCliente.php?correo=" + cliente.getCorreo(), cliente);
                 }else{
                     Toast.makeText(MainActivity.this, "Por favor complete los datos de acceso", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        btnPrueba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
     }
 
-    private void validarCliente(String URL, ClienteDto dto){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+    private void accesoCliente(String URL, ClienteDto dtoView){
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(String response) {
-                if(!response.isEmpty()){
-                    Intent ingresarApp = new Intent(getApplicationContext(), LecturaCodigo.class);
-                    ingresarApp.putExtra("clienteDto",dto);
-                    startActivity(ingresarApp);
-                }else{
-                    Toast.makeText(MainActivity.this, "Usuario o contraseña incorrecto", Toast.LENGTH_SHORT).show();
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        ClienteDto dto = new ClienteDto();
+                        jsonObject = response.getJSONObject(i);
+                        dto.setId(jsonObject.getInt("id"));
+                        dto.setNombre(jsonObject.getString("nombre"));
+                        dto.setCorreo(jsonObject.getString("correo"));
+                        dto.setContraseña(jsonObject.getString("contraseña"));
+                        if(validarCliente(dto, dtoView)){
+                            Intent ingresarApp = new Intent(getApplicationContext(), LecturaCodigo.class);
+                            ingresarApp.putExtra("clienteDto",dto);
+                            startActivity(ingresarApp);
+                        }
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Datos de acceso incorrectos", Toast.LENGTH_SHORT).show();
             }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("correo", dto.getCorreo());
-                parametros.put("contraseña", dto.getContraseña());
-                return parametros;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+
+        });
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 
-    private void datosLogin(ClienteDto dto){
-        SharedPreferences preferences = getSharedPreferences("datosLogin", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("nombre", dto.getNombre());
-        editor.putString("correo", dto.getCorreo());
-        editor.putString("contraseña", dto.getContraseña());
-        editor.commit();
+    private boolean validarCliente(ClienteDto dto, ClienteDto dtoView){
+        if(dto.getCorreo().equals(dtoView.getCorreo()) && dto.getContraseña().equals(dtoView.getContraseña())){
+            return true;
+        }else{
+            Toast.makeText(getApplicationContext(), "Datos de acceso incorrectos", Toast.LENGTH_SHORT).show();
+        }
+        return false;
     }
 }

@@ -1,4 +1,4 @@
-package com.inacap.smartdrunkapp;
+package com.inacap.smartdrunkapp.controlador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,12 +7,18 @@ import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.inacap.smartdrunkapp.R;
+import com.inacap.smartdrunkapp.dto.AdaptadorDetalleCuenta;
 import com.inacap.smartdrunkapp.dto.AdaptadorProducto;
+import com.inacap.smartdrunkapp.dto.ClienteDto;
+import com.inacap.smartdrunkapp.dto.DetalleCuentaDto;
+import com.inacap.smartdrunkapp.dto.DetalleCuentaNormalizado;
 import com.inacap.smartdrunkapp.dto.ProductoDto;
 
 import org.json.JSONArray;
@@ -20,19 +26,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CuentaCliente extends AppCompatActivity {
-    private ArrayList<ProductoDto> productos;
+    private ArrayList<DetalleCuentaNormalizado> detalleNorm;
     ListView mListView;
     RequestQueue requestQueue;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cuenta_cliente);
-        mListView = findViewById(R.id.lvDetalleCuenta);
-        productos = new ArrayList<ProductoDto>();
-        listarDetalleMesa("http://smartdrunk.freetzi.com/SmartDrunk/buscarDetalleCuenta.php");
+        String mesa = getIntent().getSerializableExtra("codMesa").toString();
+        ClienteDto cliente = (ClienteDto)getIntent().getSerializableExtra("clienteDto");
+        mListView = findViewById(R.id.lvDetCuenta);
+        detalleNorm = new ArrayList<DetalleCuentaNormalizado>();
+        listarDetalleMesa("http://smartdrunk.freetzi.com/SmartDrunk/buscarDetalleCuenta.php?mesa=" + mesa);
     }
 
     private void listarDetalleMesa(String URL){
@@ -42,14 +51,14 @@ public class CuentaCliente extends AppCompatActivity {
                 JSONObject jsonObject = null;
                 for (int i = 0; i < response.length(); i++) {
                     try {
-                        ProductoDto dto = new ProductoDto();
+                        DetalleCuentaNormalizado dto = new DetalleCuentaNormalizado();
                         jsonObject = response.getJSONObject(i);
                         dto.setCodProducto(jsonObject.getInt("codProducto"));
-                        dto.setNombre(jsonObject.getString("nombre"));
-                        dto.setPrecio(jsonObject.getInt("tipoProd"));
-                        dto.setPrecio(jsonObject.getInt("precio"));
-                        dto.setSt(jsonObject.getInt("st"));
-                        Log.d("DTO-", String.valueOf(dto.getNombre()));
+                        dto.setNombreProducto(jsonObject.getString("nombre"));
+                        dto.setPrecioProd(jsonObject.getInt("precio"));
+                        dto.setCodMesa(jsonObject.getInt("mesa"));
+                        dto.setCantProd(jsonObject.getInt("cantidadProd"));
+                        Log.d("DTO-", dto.getNombreProducto());
                         agregaListado(dto);
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -67,9 +76,9 @@ public class CuentaCliente extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
-    private void agregaListado(ProductoDto dto){
-        productos.add(dto);
-        AdaptadorProducto adaptador = new AdaptadorProducto(this, R.layout.adaptador_producto, productos);
+    private void agregaListado(DetalleCuentaNormalizado dto){
+        detalleNorm.add(dto);
+        AdaptadorDetalleCuenta adaptador = new AdaptadorDetalleCuenta(this, R.layout.adaptador_detalle_cuenta, detalleNorm);
         mListView.setAdapter(adaptador);
     }
 }

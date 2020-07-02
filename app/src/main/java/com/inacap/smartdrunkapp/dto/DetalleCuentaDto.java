@@ -60,4 +60,5 @@ public class DetalleCuentaDto implements Serializable {
     public void setSt(int st) {
         this.st = st;
     }
+
 }

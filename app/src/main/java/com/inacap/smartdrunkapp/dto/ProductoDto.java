@@ -60,4 +60,9 @@ public class ProductoDto implements Serializable {
     public void setSt(int st) {
         this.st = st;
     }
+
+    @Override
+    public String toString(){
+        return nombre + "    "+precio;
+    }
 }

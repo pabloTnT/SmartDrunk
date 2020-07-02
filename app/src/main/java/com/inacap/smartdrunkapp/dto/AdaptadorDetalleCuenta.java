@@ -14,12 +14,12 @@ import com.inacap.smartdrunkapp.R;
 import java.util.ArrayList;
 
 
-public class AdaptadorProducto extends ArrayAdapter<ProductoDto> {
+public class AdaptadorDetalleCuenta extends ArrayAdapter<DetalleCuentaNormalizado> {
 
     private Context mContext;
     int mResource;
 
-    public AdaptadorProducto(Context context, int resource, ArrayList<ProductoDto> obj) {
+    public AdaptadorDetalleCuenta(Context context, int resource, ArrayList<DetalleCuentaNormalizado> obj) {
         super(context, resource, obj);
         mContext = context;
         mResource = resource;
@@ -28,26 +28,30 @@ public class AdaptadorProducto extends ArrayAdapter<ProductoDto> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        String nombreProducto = getItem(position).getNombre();
-        int precioProducto = getItem(position).getPrecio();
-        int tipoProd = getItem(position).getTipoProd();
         int codProducto = getItem(position).getCodProducto();
-        int st = getItem(position).getSt();
+        String nombreProducto = getItem(position).getNombreProducto();
+        int codMesa = getItem(position).getCodMesa();
+        int cantProd = getItem(position).getCantProd();
+        int precioProd = getItem(position).getPrecioProd();
 
-        ProductoDto dto = new ProductoDto();
-        dto.setTipoProd(tipoProd);
+        DetalleCuentaNormalizado dto = new DetalleCuentaNormalizado();
         dto.setCodProducto(codProducto);
-        dto.setNombre(nombreProducto);
-        dto.setPrecio(precioProducto);
-        dto.setSt(st);
+        dto.setNombreProducto(nombreProducto);
+        dto.setCodMesa(codMesa);
+        dto.setCantProd(cantProd);
+        dto.setPrecioProd(precioProd);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
-        TextView tvNombre = (TextView) convertView.findViewById(R.id.tvNombreCom);
-        TextView tvPrecio = (TextView) convertView.findViewById(R.id.tvPrecioCom);
+        TextView tvNombreDet = (TextView) convertView.findViewById(R.id.tvNombreDet);
+        TextView tvCantiadDet = (TextView) convertView.findViewById(R.id.tvCantiadDet);
+        TextView tvPrecioDet = (TextView) convertView.findViewById(R.id.tvPrecioDet);
+        TextView tvSubTotalDet = (TextView) convertView.findViewById(R.id.tvSubTotalDet);
 
-        tvNombre.setText(dto.getNombre());
-        tvPrecio.setText(String.valueOf("$ " + dto.getPrecio()));
+        tvNombreDet.setText(dto.getNombreProducto());
+        tvCantiadDet.setText(String.valueOf(dto.getCantProd()));
+        tvPrecioDet.setText("$ " +String.valueOf(dto.getPrecioProd()));
+        tvSubTotalDet.setText("$ " +String.valueOf(cantProd * precioProd));
 
         return convertView;
     }

@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".controlador.MenuBebestibles"></activity>
+        <activity android:name=".controlador.DetalleProducto"></activity>
+        <activity android:name=".controlador.CuentaCliente" />
+        <activity android:name=".controlador.MenuBebestibles" />
         <activity android:name=".controlador.MenuComestibles" />
         <activity android:name=".controlador.Registro" />
         <activity android:name=".controlador.Menu" />
