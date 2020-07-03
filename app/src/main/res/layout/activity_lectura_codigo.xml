@@ -7,6 +7,23 @@
     tools:context=".controlador.LecturaCodigo">
 
     <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="@drawable/fondo"></ImageView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+    <ImageView
         android:id="@+id/ivLogo"
         android:layout_width="200dp"
         android:layout_height="120dp"
@@ -20,9 +37,12 @@
         android:id="@+id/btnLeerCodigo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:layout_marginTop="80dp"
         android:text="Escanear Codigo"
         android:textStyle="italic"
+        android:background="@drawable/boton_redondeado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
@@ -35,19 +55,20 @@
         android:text="No Puedes Escanear?"
         android:textStyle="italic"
         android:textSize="18dp"
+        android:textColor="#ccc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLeerCodigo" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilCodigoMesa"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/campo_texto"
+        android:textColorHint="#ccc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNoScaner">
@@ -55,13 +76,17 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:foregroundGravity="center"
             android:hint="Ingrese Codigo"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:textColor="#ccc"
+            android:textColorHint="#ccc"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnAceptar"
+        android:id="@+id/btnIngreso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -69,6 +94,9 @@
         android:layout_marginRight="32dp"
         android:text="Ingresar"
         android:textStyle="italic"
+        android:background="@drawable/boton_redondeado"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilCodigoMesa" />
 </androidx.constraintlayout.widget.ConstraintLayout>

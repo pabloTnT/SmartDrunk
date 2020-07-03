@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".controlador.MenuPrincipal">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="@drawable/fondo"></ImageView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
     <TextView
         android:id="@+id/tvCodMesa"
         android:layout_width="128dp"
@@ -13,8 +30,8 @@
         android:clickable="false"
         android:fontFamily="cursive"
         android:gravity="start"
-        android:textAlignment="center"
         android:textSize="24sp"
+        android:textColor="#ccc"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvMesa"
         app:layout_constraintStart_toEndOf="@+id/tvMesa" />
 
@@ -25,6 +42,7 @@
         android:layout_marginTop="32dp"
         android:clickable="false"
         android:fontFamily="cursive"
+        android:textColor="#ccc"
         android:gravity="center_horizontal"
         android:text="Bienvenido"
         android:textAlignment="center"
@@ -51,6 +69,9 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="64dp"
         android:drawableLeft="@android:drawable/ic_menu_sort_by_size"
+        android:background="@drawable/boton_redondeado"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="Tu Cuenta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMenu" />
@@ -62,6 +83,7 @@
         android:layout_marginTop="32dp"
         android:clickable="false"
         android:fontFamily="cursive"
+        android:textColor="#ccc"
         android:gravity="center_horizontal"
         android:textAlignment="center"
         android:textSize="36sp"
@@ -78,6 +100,7 @@
         android:clickable="false"
         android:fontFamily="cursive"
         android:gravity="center_horizontal"
+        android:textColor="#ccc"
         android:text="Mesa:"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -91,7 +114,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="110dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:drawableLeft="@android:drawable/ic_menu_sort_by_size"
+        android:background="@drawable/boton_redondeado"
         android:text="Menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMesa" />

@@ -32,6 +32,8 @@ public class MenuBebestibles extends AppCompatActivity {
     private ArrayList<ProductoDto> productos;
     ListView mListView;
     RequestQueue requestQueue;
+    String mesa;
+    ClienteDto cliente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +41,16 @@ public class MenuBebestibles extends AppCompatActivity {
         setContentView(R.layout.activity_menu_bebestibles);
         mListView = findViewById(R.id.lvBebestibles);
         productos = new ArrayList<ProductoDto>();
+        mesa = getIntent().getSerializableExtra("codMesa").toString();
+        cliente = (ClienteDto)getIntent().getSerializableExtra("clienteDto");
         listaBebestibles("http://smartdrunk.freetzi.com/SmartDrunk/buscarBebestibles.php");
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent detalleProducto = new Intent(getApplicationContext(), DetalleProducto.class);
                 detalleProducto.putExtra("producto", productos.get(position));
+                detalleProducto.putExtra("codMesa", mesa);
+                detalleProducto.putExtra("clienteDto",cliente);
                 startActivity(detalleProducto);
             }
         });

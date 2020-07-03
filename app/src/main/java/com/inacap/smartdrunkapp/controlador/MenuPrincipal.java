@@ -51,6 +51,8 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent accesoMenu = new Intent(getApplicationContext(), Menu.class);
+                accesoMenu.putExtra("codMesa", mesa);
+                accesoMenu.putExtra("clienteDto",cliente);
                 startActivity(accesoMenu);
             }
         });

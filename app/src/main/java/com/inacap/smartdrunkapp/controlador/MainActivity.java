@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnIngresar, btnRegistrar, btnPrueba;
+    Button btnIngresar, btnRegistrar;
     TextInputLayout tilCorreo, tilContraseña;
     RequestQueue requestQueue;
 
@@ -34,8 +34,14 @@ public class MainActivity extends AppCompatActivity {
         tilContraseña = findViewById(R.id.tilContraseña);
         btnIngresar = findViewById(R.id.btnIngresar);
         btnRegistrar = findViewById(R.id.btnCrearCuenta);
-        btnPrueba = findViewById(R.id.btnPrueba);
+        try{
+            String mensaje = getIntent().getSerializableExtra("finaliza").toString();
+            if(!mensaje.equals("") || !mensaje.equals(null)){
+                Toast.makeText(getApplicationContext(), "Gracias por su compra", Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
 
+        }
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,12 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(MainActivity.this, "Por favor complete los datos de acceso", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-        btnPrueba.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
     }

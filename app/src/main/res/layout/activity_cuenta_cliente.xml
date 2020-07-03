@@ -8,6 +8,34 @@
     tools:context=".controlador.CuentaCliente">
 
     <TextView
+        android:id="@+id/tvTotal"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:clickable="false"
+        android:fontFamily="cursive"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvTotalTx"
+        app:layout_constraintStart_toEndOf="@+id/tvTotalTx" />
+
+    <TextView
+        android:id="@+id/tvTotalTx"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:clickable="false"
+        android:fontFamily="cursive"
+        android:gravity="center_horizontal"
+        android:text="Total:"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvDetCuenta" />
+
+    <TextView
         android:id="@+id/tvTuCuenta"
         android:layout_width="200dp"
         android:layout_height="50dp"
@@ -23,7 +51,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/btnAtras2"
+        android:id="@+id/btnVolver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -87,14 +115,12 @@
 
     <ListView
         android:id="@+id/lvDetCuenta"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="388dp"
+        android:layout_height="326dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="160dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNombreDet">
@@ -105,21 +131,11 @@
         android:id="@+id/btnPagar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="32dp"
         android:text="Pagar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvDetCuenta" />
-
-    <Button
-        android:id="@+id/btnCancelar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:text="Cancelar"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnPagar"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalTx" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

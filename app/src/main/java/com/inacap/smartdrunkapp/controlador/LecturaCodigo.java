@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class LecturaCodigo extends AppCompatActivity {
 
-    private Button btnLeerCodigo;
+    private Button btnLeerCodigo, btnIngreso;
     private TextInputLayout tilCodigoMesa;
 
 
@@ -36,10 +36,25 @@ public class LecturaCodigo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lectura_codigo);
-
         tilCodigoMesa = findViewById(R.id.tilCodigoMesa);
         btnLeerCodigo = findViewById(R.id.btnLeerCodigo);
-
+        btnIngreso = findViewById(R.id.btnIngreso);
+        btnIngreso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String codMesa =tilCodigoMesa.getEditText().getText().toString();
+                if(!codMesa.equals(null) && !codMesa.equals("")){
+                    tilCodigoMesa.getEditText().setText(codMesa);
+                    ClienteDto cliente = (ClienteDto)getIntent().getSerializableExtra("clienteDto");
+                    Intent ingresoMesa = new Intent(getApplicationContext(), MenuPrincipal.class);
+                    ingresoMesa.putExtra("codMesa", codMesa);
+                    ingresoMesa.putExtra("clienteDto",cliente);
+                    startActivity(ingresoMesa);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Debe ingresar el codigo de la mesa", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         btnLeerCodigo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
