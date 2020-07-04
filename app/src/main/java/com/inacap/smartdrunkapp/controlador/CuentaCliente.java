@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -32,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +45,8 @@ public class CuentaCliente extends AppCompatActivity {
     ImageButton btnVolver;
     Button btnPagar;
     TextView tvTotal;
-    int precioTotal;
+    int precioTotal = 0;
+    DecimalFormat format = new DecimalFormat("###,###.##");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,11 +68,17 @@ public class CuentaCliente extends AppCompatActivity {
         btnPagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                desactivaDetalle("http://smartdrunk.freetzi.com/SmartDrunk/desactivaDetalleCuenta.php", mesa);
-                Intent volverPrincipal = new Intent(getApplicationContext(), MainActivity.class);
-                volverPrincipal.putExtra("finaliza", "si");
-                startActivity(volverPrincipal);
-                finish();
+                if(precioTotal!=0){
+                    desactivaDetalle("http://smartdrunk.freetzi.com/SmartDrunk/desactivaDetalleCuenta.php", mesa);
+                    Intent volverPrincipal = new Intent(getApplicationContext(), MainActivity.class);
+                    volverPrincipal.putExtra("finaliza", "si");
+                    startActivity(volverPrincipal);
+                    finish();
+                }else{
+                    Toast toast = Toast.makeText(getApplicationContext(), "Aun no realiza un pedido", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP,0,0);
+                    toast.show();
+                }
             }
         });
     }
@@ -92,14 +101,18 @@ public class CuentaCliente extends AppCompatActivity {
                         Log.d("DTO-", dto.getNombreProducto());
                         agregaListado(dto);
                     } catch (JSONException e) {
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast toast = Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.TOP,0,0);
+                        toast.show();
                     }
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "No hay productos", Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(getApplicationContext(),"No hay productos", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP,0,0);
+                toast.show();
             }
 
         });
@@ -142,6 +155,6 @@ public class CuentaCliente extends AppCompatActivity {
     private void calculaTotal(int precio, int cantidad){
         precio = precio * cantidad;
         precioTotal += precio;
-        tvTotal.setText(String.valueOf(precioTotal));
+        tvTotal.setText("$ " + String.valueOf(format.format(precioTotal)));
     }
 }

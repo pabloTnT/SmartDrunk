@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.inacap.smartdrunkapp.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -18,6 +20,7 @@ public class AdaptadorProducto extends ArrayAdapter<ProductoDto> {
 
     private Context mContext;
     int mResource;
+    DecimalFormat format = new DecimalFormat("###,###.##");
 
     public AdaptadorProducto(Context context, int resource, ArrayList<ProductoDto> obj) {
         super(context, resource, obj);
@@ -47,7 +50,7 @@ public class AdaptadorProducto extends ArrayAdapter<ProductoDto> {
         TextView tvPrecio = (TextView) convertView.findViewById(R.id.tvPrecioCom);
 
         tvNombre.setText(dto.getNombre());
-        tvPrecio.setText(String.valueOf("$ " + dto.getPrecio()));
+        tvPrecio.setText(String.valueOf("$ " + format.format(dto.getPrecio())));
 
         return convertView;
     }

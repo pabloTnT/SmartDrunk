@@ -6,6 +6,78 @@
     android:layout_height="match_parent"
     tools:context=".controlador.DetalleProducto">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondo"
+        android:scaleType="centerCrop"></ImageView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"></ImageView>
+
+    <TextView
+        android:id="@+id/tvPrecioFinal"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="Valor:"
+        android:textColor="#ccc"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCant" />
+
+    <TextView
+        android:id="@+id/tvPrecio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginBottom="324dp"
+        android:gravity="center"
+        android:text="Precio:"
+        android:textColor="#ccc"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivProd"
+        app:layout_constraintVertical_bias="0.473" />
+
+    <TextView
+        android:id="@+id/tvPrecioVal"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#ccc"
+        android:textSize="25dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvPrecio"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintStart_toEndOf="@+id/tvPrecio" />
+
+    <TextView
+        android:id="@+id/tvPrecioTotalVal"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:gravity="center"
+        android:textColor="#ccc"
+        android:textSize="25dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvPrecioFinal"
+        app:layout_constraintStart_toEndOf="@+id/tvPrecioFinal" />
+
     <TextView
         android:id="@+id/tvProducto"
         android:layout_width="200dp"
@@ -15,13 +87,14 @@
         android:fontFamily="cursive"
         android:gravity="center"
         android:textAlignment="center"
-        android:textSize="36sp"
+        android:textColor="#ccc"
+        android:textSize="46sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/btnAtras3"
+        android:id="@+id/btnVuelveListado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -29,61 +102,89 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:background="@android:color/transparent"
         app:layout_constraintEnd_toStartOf="@+id/tvProducto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
+        app:srcCompat="@drawable/atras" />
 
     <TextView
         android:id="@+id/tvCant"
-        android:layout_width="70dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="228dp"
+        android:gravity="center"
         android:text="Cantidad"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvCantProducto"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="#ccc"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPrecio"
+        app:layout_constraintVertical_bias="0.55" />
 
     <TextView
         android:id="@+id/tvCantProducto"
-        android:layout_width="29dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginBottom="120dp"
+        android:layout_width="49dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginBottom="240dp"
         android:text="1"
+        android:textColor="#ccc"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvCant" />
-
-    <ImageButton
-        android:id="@+id/btnAumentar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:src="@android:drawable/arrow_up_float"
-        app:layout_constraintBottom_toBottomOf="@+id/tvCantProducto"
-        app:layout_constraintEnd_toStartOf="@+id/tvCantProducto" />
 
     <ImageButton
         android:id="@+id/btnDisminuir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:src="@android:drawable/arrow_down_float"
-        app:layout_constraintBottom_toBottomOf="@+id/tvCantProducto"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/boton_redondeado"
+        android:src="@drawable/disminuir"
+        app:layout_constraintBottom_toBottomOf="@+id/btnAumentar"
+        app:layout_constraintEnd_toStartOf="@+id/tvCantProducto" />
+
+    <ImageButton
+        android:id="@+id/btnAumentar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/boton_redondeado"
+        android:src="@drawable/aumentar"
+        app:layout_constraintBottom_toTopOf="@+id/tvPrecioTotalVal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tvCantProducto" />
 
     <Button
         android:id="@+id/btnAgregarDet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:background="@drawable/boton_redondeado"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="Agregar"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCantProducto" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPrecioTotalVal" />
+
+    <ImageView
+        android:id="@+id/ivProd"
+        android:layout_width="220dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProducto"
+        app:srcCompat="@drawable/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

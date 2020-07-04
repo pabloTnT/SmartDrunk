@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,7 +41,7 @@ public class MenuPrincipal extends AppCompatActivity {
         String mesa = getIntent().getSerializableExtra("codMesa").toString();
         ClienteDto cliente = (ClienteDto)getIntent().getSerializableExtra("clienteDto");
         tvCodMesa.setText(mesa);
-        tvUsuario.setText(cliente.getNombre());
+        tvUsuario.setText(nombreClienteUpperCase(cliente.getNombre()));
         MesaDto mesaDto = new MesaDto();
         mesaDto.setCodCliente(cliente.getId());
         mesaDto.setCodMesa(Integer.valueOf(mesa));
@@ -75,13 +76,17 @@ public class MenuPrincipal extends AppCompatActivity {
                 if (!response.isEmpty()) {
 
                 } else {
-                    Toast.makeText(MenuPrincipal.this, "Error en el registro", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(getApplicationContext(), "Error en el registro", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP,0,0);
+                    toast.show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MenuPrincipal.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP,0,0);
+                toast.show();
             }
         }){
             @Override
@@ -100,4 +105,11 @@ public class MenuPrincipal extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    public String nombreClienteUpperCase(String nombre){
+        if(nombre.isEmpty()){
+            return nombre;
+        }else{
+            return Character.toUpperCase(nombre.charAt(0)) + nombre.substring(1);
+        }
+    }
 }

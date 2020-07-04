@@ -7,13 +7,64 @@
     android:layout_height="match_parent"
     tools:context=".controlador.MenuBebestibles">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="@drawable/fondo"></ImageView>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tvTituloBebestibles"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:clickable="false"
+        android:fontFamily="cursive"
+        android:gravity="center_horizontal"
+        android:text="Bebestibles"
+        android:textAlignment="center"
+        android:textColor="#ccc"
+        android:textSize="46dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnVolverPrincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/tvTituloBebestibles"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/atras" />
     <TextView
         android:id="@+id/tvNombreBeb"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="#6EB51B"
+        android:background="@android:color/transparent"
         android:gravity="center"
         android:text="Nombre"
+        android:textColor="#ccc"
+        android:textSize="25dp"
         android:textAlignment="center"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvPrecioBeb"
         app:layout_constraintEnd_toStartOf="@+id/tvPrecioBeb"
@@ -23,8 +74,11 @@
         android:id="@+id/tvPrecioBeb"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="#6EB51B"
+        android:layout_marginTop="150dp"
+        android:background="@android:color/transparent"
         android:gravity="center"
+        android:textColor="#ccc"
+        android:textSize="25dp"
         android:text="Precio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvNombreBeb"

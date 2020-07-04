@@ -3,6 +3,8 @@ package com.inacap.smartdrunkapp.controlador;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -17,6 +19,8 @@ import com.inacap.smartdrunkapp.dto.ClienteDto;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.regex.Pattern;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
         btnRegistrar = findViewById(R.id.btnCrearCuenta);
         try{
             String mensaje = getIntent().getSerializableExtra("finaliza").toString();
-            if(!mensaje.equals("") || !mensaje.equals(null)){
-                Toast.makeText(getApplicationContext(), "Gracias por su compra", Toast.LENGTH_SHORT).show();
+            if(!mensaje.isEmpty()){
+                Toast toast = Toast.makeText(getApplicationContext(), "Gracias por su compra", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP,0,0);
+                toast.show();
             }
         }catch (Exception e){
 
@@ -55,10 +61,12 @@ public class MainActivity extends AppCompatActivity {
                 ClienteDto cliente = new ClienteDto();
                 cliente.setCorreo(tilCorreo.getEditText().getText().toString());
                 cliente.setContraseña(tilContraseña.getEditText().getText().toString());
-                if(!cliente.getCorreo().isEmpty() && !cliente.getContraseña().isEmpty()){
+                if(cliente.getCorreo().isEmpty() || cliente.getContraseña().isEmpty()){
+                    Toast toast = Toast.makeText(getApplicationContext(), "Por favor complete todos los datos", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP, 0, 0);
+                    toast.show();
+                }else if(validarCorreo(cliente.getCorreo()) && validaContraseña(cliente.getContraseña())){
                     accesoCliente("http://smartdrunk.freetzi.com/SmartDrunk/buscarCliente.php?correo=" + cliente.getCorreo(), cliente);
-                }else{
-                    Toast.makeText(MainActivity.this, "Por favor complete los datos de acceso", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -102,8 +110,36 @@ public class MainActivity extends AppCompatActivity {
         if(dto.getCorreo().equals(dtoView.getCorreo()) && dto.getContraseña().equals(dtoView.getContraseña())){
             return true;
         }else{
-            Toast.makeText(getApplicationContext(), "Datos de acceso incorrectos", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(getApplicationContext(), "Datos de acceso incorrectos", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP, 0, 0);
+            toast.show();
         }
         return false;
+    }
+
+    private boolean validarCorreo(String correo){
+        boolean res;
+            Pattern pattern = Patterns.EMAIL_ADDRESS;
+            res = pattern.matcher(correo).matches();
+            if(res){
+                res = true;
+            }else{
+                res = false;
+                Toast toast = Toast.makeText(getApplicationContext(),"Correo invalido", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP, 0, 0);
+                toast.show();
+            }
+            return  res;
+    }
+
+    private boolean validaContraseña(String contraseña){
+        boolean res;
+        if(contraseña.length()<4){
+            Toast toast = Toast.makeText(getApplicationContext(),"La Contraseña debe tener al menos 4 carácteres", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP, 0, 0);
+            toast.show();
+            return false;
+        }
+        return true;
     }
 }

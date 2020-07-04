@@ -22,7 +22,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
     </ImageView>
 
     <Button
@@ -39,11 +38,12 @@
 
     <ImageView
         android:id="@+id/ivLogo"
-        android:layout_width="300dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/ic_launcher_foreground"
+        android:layout_width="228dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,14 +51,14 @@
         android:id="@+id/tvInicioSesion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:clickable="false"
         android:fontFamily="cursive"
         android:gravity="center_horizontal"
         android:text="Inicio Sesion"
         android:textAlignment="center"
-        android:textSize="36sp"
         android:textColor="@color/cardview_light_background"
+        android:textSize="46dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
@@ -82,9 +82,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:hint="Correo"
-            android:inputType="none|textEmailSubject"
             android:textColor="#ccc"
-            android:textColorHint="#ccc" />
+            android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -136,7 +135,7 @@
         android:text="No tienes cuenta?"
         android:textSize="18dp"
         android:textStyle="italic"
-        android:textColor="@color/cardview_light_background"
+        android:textColor="#ccc"
         app:layout_constraintBottom_toTopOf="@+id/btnCrearCuenta"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,9 @@
         android:layout_height="60dp"
         android:gravity="center"
         android:text="TextView1"
+        android:textSize="25dp"
+        android:background="@drawable/fondo"
+        android:textColor="#ccc"
         android:textAlignment="center"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvPrecioCom"
         app:layout_constraintEnd_toStartOf="@+id/tvPrecioCom"
@@ -22,9 +25,12 @@
     <TextView
         android:id="@+id/tvPrecioCom"
         android:layout_width="0dp"
-        android:layout_height="59dp"
+        android:layout_height="60dp"
         android:gravity="center"
         android:text="TextView2"
+        android:textSize="25dp"
+        android:background="@drawable/fondo"
+        android:textColor="#ccc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvNombreCom"
         app:layout_constraintTop_toTopOf="parent" />

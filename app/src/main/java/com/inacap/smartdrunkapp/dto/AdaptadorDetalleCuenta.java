@@ -13,6 +13,7 @@ import com.inacap.smartdrunkapp.R;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -20,7 +21,7 @@ public class AdaptadorDetalleCuenta extends ArrayAdapter<DetalleCuentaNormalizad
 
     private Context mContext;
     int mResource;
-    TextView tvTotal;
+    DecimalFormat format = new DecimalFormat("###,###.##");
 
     public AdaptadorDetalleCuenta(Context context, int resource, ArrayList<DetalleCuentaNormalizado> obj) {
         super(context, resource, obj);
@@ -53,8 +54,8 @@ public class AdaptadorDetalleCuenta extends ArrayAdapter<DetalleCuentaNormalizad
 
         tvNombreDet.setText(dto.getNombreProducto());
         tvCantiadDet.setText(String.valueOf(dto.getCantProd()));
-        tvPrecioDet.setText("$ " +String.valueOf(dto.getPrecioProd()));
-        tvSubTotalDet.setText("$ " +String.valueOf(cantProd * precioProd));
+        tvPrecioDet.setText("$ " +String.valueOf(format.format(dto.getPrecioProd())));
+        tvSubTotalDet.setText("$ " +String.valueOf(format.format(cantProd * precioProd)));
         return convertView;
     }
 

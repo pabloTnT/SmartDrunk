@@ -21,7 +21,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
     </ImageView>
     <TextView
         android:id="@+id/tvCodMesa"
@@ -52,14 +51,14 @@
 
     <ImageView
         android:id="@+id/ivImagen2"
-        android:layout_width="145dp"
+        android:layout_width="150dp"
         android:layout_height="120dp"
         android:layout_marginTop="115dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
+        android:background="@drawable/promo2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCuenta"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCuenta" />
 
     <Button
         android:id="@+id/btnCuenta"
@@ -68,8 +67,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="64dp"
-        android:drawableLeft="@android:drawable/ic_menu_sort_by_size"
         android:background="@drawable/boton_redondeado"
+        android:drawableLeft="@drawable/cuenta"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="Tu Cuenta"
@@ -83,12 +82,12 @@
         android:layout_marginTop="32dp"
         android:clickable="false"
         android:fontFamily="cursive"
-        android:textColor="#ccc"
         android:gravity="center_horizontal"
         android:textAlignment="center"
+        android:textColor="#ccc"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.819"
         app:layout_constraintStart_toEndOf="@+id/tvMesa"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,23 +113,23 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="110dp"
+        android:background="@drawable/boton_redondeado"
+        android:drawableLeft="@drawable/menu"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:drawableLeft="@android:drawable/ic_menu_sort_by_size"
-        android:background="@drawable/boton_redondeado"
         android:text="Menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMesa" />
 
     <ImageView
         android:id="@+id/ivImagen1"
-        android:layout_width="145dp"
+        android:layout_width="150dp"
         android:layout_height="120dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="115dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCuenta"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+        android:background="@drawable/promo1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

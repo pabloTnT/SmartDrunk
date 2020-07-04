@@ -6,15 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".controlador.Menu">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="@drawable/fondo"></ImageView>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </ImageView>
     <Button
         android:id="@+id/btnComestibles"
         android:layout_width="244dp"
         android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
         android:layout_marginTop="120dp"
-        android:drawableLeft="@android:drawable/ic_menu_sort_by_size"
+        android:background="@drawable/boton_redondeado"
+        android:drawableLeft="@drawable/comestibles"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="Comestibles"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMenu" />
 
@@ -22,11 +39,13 @@
         android:id="@+id/btnBebestibles"
         android:layout_width="244dp"
         android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
         android:layout_marginTop="80dp"
-        android:drawableLeft="@android:drawable/ic_menu_sort_by_size"
+        android:background="@drawable/boton_redondeado"
+        android:drawableLeft="@drawable/bebestibles"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="Bebestibles"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnComestibles" />
 
@@ -34,14 +53,16 @@
         android:id="@+id/tvMenu"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:clickable="false"
         android:fontFamily="cursive"
         android:gravity="center_horizontal"
         android:text="Menu"
         android:textAlignment="center"
-        android:textSize="36sp"
+        android:textColor="#ccc"
+        android:textSize="46dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,14 +70,17 @@
         android:id="@+id/btnAtras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
         app:layout_constraintEnd_toStartOf="@+id/tvMenu"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
+        app:srcCompat="@drawable/atras" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

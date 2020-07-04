@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -51,7 +52,9 @@ public class LecturaCodigo extends AppCompatActivity {
                     ingresoMesa.putExtra("clienteDto",cliente);
                     startActivity(ingresoMesa);
                 }else{
-                    Toast.makeText(getApplicationContext(), "Debe ingresar el codigo de la mesa", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar el codigo de la mesa", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP,0,0);
+                    toast.show();
                 }
             }
         });
@@ -82,7 +85,9 @@ public class LecturaCodigo extends AppCompatActivity {
         ClienteDto cliente = (ClienteDto)getIntent().getSerializableExtra("clienteDto");
         if(result != null){
             if(result.getContents() == null){
-                Toast.makeText(LecturaCodigo.this, "Cancelaste Escanner", Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(getApplicationContext(), "Cancelaste Escanner", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP,0,0);
+                toast.show();
             }else{
                 String codMesa = result.getContents().toString();
                 tilCodigoMesa.getEditText().setText(codMesa);
